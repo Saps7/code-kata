@@ -26,6 +26,24 @@
                     "month": 9,
                     "profitOrLoss": -187000,
                     "assetsValue": 223452
+                },
+                {
+                    "year": 2020,
+                    "month": 8,
+                    "profitOrLoss": 8000,
+                    "assetsValue": 223452
+                },
+                {
+                    "year": 2020,
+                    "month": 7,
+                    "profitOrLoss": -1800,
+                    "assetsValue": 223452
+                },
+                {
+                    "year": 2020,
+                    "month": 6,
+                    "profitOrLoss": 7000,
+                    "assetsValue": 223452
                 }
             ]
         },

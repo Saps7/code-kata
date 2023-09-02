@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import {BalanceSheetDataItem} from '../../types/balanceSheets';
 import NavBar from './NavBar';
 
-
+const months = ["blank", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function SpanningTable({company, balanceSheet, provider}: any) {
   function totalProfit(data: readonly BalanceSheetDataItem[]) {
@@ -44,7 +44,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
               {balanceSheet.map((eachMonth: any) => (
                   <TableRow key={eachMonth.month}>
                   <TableCell>{eachMonth.year}</TableCell>
-                  <TableCell align="right">{eachMonth.month}</TableCell>
+                  <TableCell align="right">{months[eachMonth.month]}</TableCell>
                   <TableCell align="right">{eachMonth.profitOrLoss}</TableCell>
                   <TableCell align="right">{eachMonth.assetsValue}</TableCell>
                   </TableRow>

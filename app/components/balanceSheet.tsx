@@ -35,29 +35,32 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
               </TableRow>
               <TableRow>
                   <TableCell>Year</TableCell>
-                  <TableCell >Month</TableCell>
+                  <TableCell align="right">Month</TableCell>
                   <TableCell align="right">Profit or Loss</TableCell>
                   <TableCell align="right">Asset Value</TableCell>
               </TableRow>
               </TableHead>
               <TableBody>
-              {balanceSheet.map((eachMonth: any) => (
-                  <TableRow key={eachMonth.month}>
-                  <TableCell>{eachMonth.year}</TableCell>
-                  <TableCell align="right">{months[eachMonth.month]}</TableCell>
-                  <TableCell align="right">{eachMonth.profitOrLoss}</TableCell>
-                  <TableCell align="right">{eachMonth.assetsValue}</TableCell>
-                  </TableRow>
-              ))}
-              <TableRow>
-                  <TableCell rowSpan={3} />
-                  <TableCell colSpan={2}>Total Profit or Loss</TableCell>
-                  <TableCell align="left">{profit}</TableCell>
-              </TableRow>
-              <TableRow>
-                  <TableCell colSpan={2}>Total Asset Value</TableCell>
+                {balanceSheet.map((eachMonth: any) => (
+                    <TableRow key={eachMonth.month}>
+                    <TableCell>{eachMonth.year}</TableCell>
+                    <TableCell align="right">{months[eachMonth.month]}</TableCell>
+                    <TableCell align="right">{eachMonth.profitOrLoss}</TableCell>
+                    <TableCell align="right">{eachMonth.assetsValue}</TableCell>
+                    </TableRow>
+                ))}
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell align="right">Total Profit or Loss</TableCell>
+                  <TableCell align="right">{profit}</TableCell>
+                  <TableCell align="right"></TableCell>
+                </TableRow>
+                <TableRow>
+                <TableCell></TableCell>
+                  <TableCell align="right">Average Asset Value</TableCell>
+                  <TableCell align="right"></TableCell>
                   <TableCell align="right">{avgAssetValue}</TableCell>
-              </TableRow>
+                </TableRow>
               </TableBody>
           </Table>
         </TableContainer>

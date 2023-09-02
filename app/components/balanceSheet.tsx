@@ -20,7 +20,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
   }
 
   const profit = totalProfit(balanceSheet);
-  const totalAsset = totalAssetValue(balanceSheet);
+  const avgAssetValue = parseInt(totalAssetValue(balanceSheet)/balanceSheet.length);
 
   return (
       <div>
@@ -30,7 +30,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
               <TableHead>
               <TableRow>
                   <TableCell align="center">
-                          {company} Balance Sheet Review
+                        {company} Balance Sheet Review
                   </TableCell>   
               </TableRow>
               <TableRow>
@@ -56,7 +56,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
               </TableRow>
               <TableRow>
                   <TableCell colSpan={2}>Total Asset Value</TableCell>
-                  <TableCell align="right">{totalAsset}</TableCell>
+                  <TableCell align="right">{avgAssetValue}</TableCell>
               </TableRow>
               </TableBody>
           </Table>

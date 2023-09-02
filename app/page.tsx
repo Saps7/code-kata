@@ -19,8 +19,8 @@ const Page = () => {
         {...props}
       >
         {"Copyright © "}
-          Loan Application Manager
-        {new Date().getFullYear()}
+          Loan Application Manager 
+         {new Date().getFullYear()}
         {"."}
       </Typography>
     );

@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "json-server": "json-server --watch data/balanceSheets.json --port 3001"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -28,8 +27,5 @@
     "styled-components": "^5.3.11",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
-  },
-  "devDependencies": {
-    "json-server": "^0.17.3"
   }
 }

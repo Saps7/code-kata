@@ -4,7 +4,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "next/link";
 import Box from "@mui/material/Box";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import Typography from "@mui/material/Typography";
@@ -14,48 +13,27 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import SpanningTable from "./balanceSheet";
 import { useState } from "react";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 interface FormProps {
   setBalanceSheets: any;
   setCompanyDetails: any;
+  setIsFormSubmitted: any;
 }
 
-export default function Form({setBalanceSheets, setCompanyDetails}: FormProps) {
+export default function Form({setBalanceSheets, setCompanyDetails, setIsFormSubmitted}: FormProps) {
   const [company, setCompany] = useState("");
   const [year, setYear] = useState(0);
   const [provider, setProvider] = useState("");
   const [loan, setLoan] = useState(0);
 
-
-
-  
-
   const submitHandler = async (e: any) => {
     e.preventDefault();
+    setIsFormSubmitted(true);
 
     if (company == "" || year == 0 || !provider || loan == 0) {
-      alert("Title and description are required.");
+      alert("Please enssure all fields are entered");
       return;
     }
     let companyDetails = {
@@ -64,6 +42,7 @@ export default function Form({setBalanceSheets, setCompanyDetails}: FormProps) {
       provider: provider,
       loan: loan,
     };
+
     try {
       let response = await fetch("/api/balanceSheets", {
         method: "POST",
@@ -163,19 +142,10 @@ export default function Form({setBalanceSheets, setCompanyDetails}: FormProps) {
                 submitHandler(e);
               }}
             >
-              Submit
-              {/* <Link href={{
-                pathname: '/accountOverview',
-                query: { company }
-              }}>
-                Submit
-              </Link> */}
+              Apply For Loan
             </Button>
           </Box>
         </Box>
-        
-     
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

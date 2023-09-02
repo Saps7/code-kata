@@ -1,16 +1,30 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
+import Typography from '@mui/material/Typography';
 import Form from "./components/form";
 import SpanningTable from "./components/balanceSheet";
-import { Container } from "@mui/material";
 
 const Page = () => {
   const [balanceSheets, setBalanceSheets] = useState([]);
   const [companyDetails, setCompanyDetails] = useState<any>({});
-  const [totalProfitOrLoss, setTotalProfitOrLoss] = useState(0);
-  const [averageAssetsValue, setAverageAssetsValue] = useState(0);
   const [preAssessment, setPreAssessment] = useState(20);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  function Copyright(props: any) {
+    return (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        align="center"
+        {...props}
+      >
+        {"Copyright © "}
+          Loan Application Manager
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
+  }
 
   useEffect(() => {
     if (balanceSheets.length === 0) return;
@@ -29,8 +43,6 @@ const Page = () => {
 
     console.log(totalProfitOrLoss);
     console.log(averageAssetsValue);
-    setTotalProfitOrLoss(totalProfitOrLoss);
-    setAverageAssetsValue(averageAssetsValue);
 
     if (totalProfitOrLoss > 0) {
       setPreAssessment(60);
@@ -41,20 +53,27 @@ const Page = () => {
     }
   }, [balanceSheets]);
 
+  
+
   return (
     <div>
-      <Form
+      {!isFormSubmitted &&
+        (<Form
         setBalanceSheets={setBalanceSheets}
         setCompanyDetails={setCompanyDetails}
-      />
+        setIsFormSubmitted={setIsFormSubmitted}
+        />
+      )}
+      
       {balanceSheets.length > 0 && (
-        <div className="py-4 px-10 text-2xl bg-gray-300 rounded-md">
-          <h1 className="font-bold">Pre-Assesment: {preAssessment} </h1>
+        <SpanningTable company={companyDetails?.company} balanceSheet={balanceSheets} provider={companyDetails?.provider} />
+      )}
+      {balanceSheets.length > 0 && (
+        <div className="py-4 px-10 text-2xl bg-gray-300 rounded-md" style={{marginTop: "30px"}}>
+          <h1 className="font-bold" style={{textAlign: "center"}}>Pre-Assesment: {preAssessment} </h1>
         </div>
       )}
-      {balanceSheets.length > 0 && (
-        <SpanningTable company={companyDetails?.company} balanceSheet={balanceSheets} />
-      )}
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
 };

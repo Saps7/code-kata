@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -45,17 +46,16 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export default async function SpanningTable(company: any) {
+export default function SpanningTable({company, balanceSheet}: any) {
     
-    const balanceSheet = await getBalanceSheet(company);
-    console.log(balanceSheet);
+    // const balanceSheet = await getBalanceSheet(company);
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="spanning table">
                 <TableHead>
                 <TableRow>
                     <TableCell align="center">
-                            {company} Balance Sheet
+                           {company} Balance Sheet Review
                     </TableCell>
                     
                 </TableRow>
@@ -67,7 +67,7 @@ export default async function SpanningTable(company: any) {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {balanceSheet.map((eachMonth) => (
+                {balanceSheet.map((eachMonth: any) => (
                     <TableRow key={eachMonth.month}>
                     <TableCell>{eachMonth.year}</TableCell>
                     <TableCell align="right">{eachMonth.month}</TableCell>

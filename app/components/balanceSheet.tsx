@@ -12,15 +12,18 @@ import NavBar from './NavBar';
 const months = ["blank", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function SpanningTable({company, balanceSheet, provider}: any) {
-  function totalProfit(data: readonly BalanceSheetDataItem[]) {
-    return data.map(d => d.profitOrLoss).reduce((a, b) => a + b);
-  }
-  function totalAssetValue(data: readonly BalanceSheetDataItem[]) {
-    return data.map(d => d.assetsValue).reduce((a, b) => a + b);
-  }
+  const first12Objects = balanceSheets.slice(0, 12);
 
-  const profit = totalProfit(balanceSheet);
-  const avgAssetValue = parseInt(totalAssetValue(balanceSheet)/balanceSheet.length);
+    // Calculate the average profitOrLoss
+    const totalProfitOrLoss = first12Objects.reduce(
+      (acc: any, obj: any) => acc + obj.profitOrLoss,
+      0
+    );
+    const totalAssestsValue = first12Objects.reduce(
+      (acc: any, obj: any) => acc + obj.assetsValue,
+      0
+    );
+    let averageAssetsValue = totalAssestsValue / first12Objects.length;
 
   return (
       <div>
@@ -52,14 +55,14 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell align="right">Total Profit or Loss</TableCell>
-                  <TableCell align="right">{profit}</TableCell>
+                  <TableCell align="right">{totalProfitOrLoss}</TableCell>
                   <TableCell align="right"></TableCell>
                 </TableRow>
                 <TableRow>
                 <TableCell></TableCell>
                   <TableCell align="right">Average Asset Value</TableCell>
                   <TableCell align="right"></TableCell>
-                  <TableCell align="right">{avgAssetValue}</TableCell>
+                  <TableCell align="right">{averageAssetsValue}</TableCell>
                 </TableRow>
               </TableBody>
           </Table>

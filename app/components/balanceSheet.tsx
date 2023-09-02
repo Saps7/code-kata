@@ -6,13 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {BalanceSheetDataItem} from '../../types/balanceSheets';
 import NavBar from './NavBar';
 
 const months = ["blank", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function SpanningTable({company, balanceSheet, provider}: any) {
-  const first12Objects = balanceSheets.slice(0, 12);
+  const first12Objects = balanceSheet.slice(0, 12);
 
     // Calculate the average profitOrLoss
     const totalProfitOrLoss = first12Objects.reduce(

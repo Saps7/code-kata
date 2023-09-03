@@ -11,8 +11,6 @@ export async function POST(req: Request) {
     const requestData = await req.json();
     let companyName = requestData.company;
 
-    //   let balanceSheet = companiesBalanceSheets
-
     let balanceSheetJson = await fs.promises.readFile(filePath, "utf-8");
     let balanceSheet = await JSON.parse(balanceSheetJson).Companies;
 

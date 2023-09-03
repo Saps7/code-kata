@@ -11,18 +11,17 @@ import NavBar from './NavBar';
 const months = ["blank", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function SpanningTable({company, balanceSheet, provider}: any) {
-  const first12Objects = balanceSheet.slice(0, 12);
-
-    // Calculate the average profitOrLoss
-    const totalProfitOrLoss = first12Objects.reduce(
-      (acc: any, obj: any) => acc + obj.profitOrLoss,
-      0
-    );
-    const totalAssestsValue = first12Objects.reduce(
-      (acc: any, obj: any) => acc + obj.assetsValue,
-      0
-    );
-    let averageAssetsValue = totalAssestsValue / first12Objects.length;
+  let first12Objects = balanceSheet.slice(0, 12);
+  // Calculate total profitOrLoss and avg Asset Value
+  const totalProfitOrLoss = first12Objects.reduce(
+    (acc: any, obj: any) => acc + obj.profitOrLoss,
+    0
+  );
+  const totalAssestsValue = first12Objects.reduce(
+    (acc: any, obj: any) => acc + obj.assetsValue,
+    0
+  );
+  const averageAssetsValue = parseInt(totalAssestsValue / first12Objects.length);
 
   return (
       <div>
@@ -43,7 +42,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
               </TableRow>
               </TableHead>
               <TableBody>
-                {balanceSheet.map((eachMonth: any) => (
+                {first12Objects.map((eachMonth: any) => (
                     <TableRow key={eachMonth.month}>
                     <TableCell>{eachMonth.year}</TableCell>
                     <TableCell align="right">{months[eachMonth.month]}</TableCell>

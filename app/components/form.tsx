@@ -19,10 +19,9 @@ const defaultTheme = createTheme();
 interface FormProps {
   setBalanceSheets: any;
   setCompanyDetails: any;
-  setIsFormSubmitted: any;
 }
 
-export default function Form({setBalanceSheets, setCompanyDetails, setIsFormSubmitted}: FormProps) {
+export default function Form({setBalanceSheets, setCompanyDetails}: FormProps) {
   const [company, setCompany] = useState("");
   const [year, setYear] = useState(0);
   const [provider, setProvider] = useState("");
@@ -30,12 +29,11 @@ export default function Form({setBalanceSheets, setCompanyDetails, setIsFormSubm
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
-    setIsFormSubmitted(true);
-
     if (company == "" || year == 0 || !provider || loan == 0) {
       alert("Please enssure all fields are entered");
       return;
     }
+
     let companyDetails = {
       company: company,
       year: year,
@@ -142,7 +140,7 @@ export default function Form({setBalanceSheets, setCompanyDetails, setIsFormSubm
                 submitHandler(e);
               }}
             >
-              Apply For Loan
+              Fetch Balance Sheet from Accounting Provider
             </Button>
           </Box>
         </Box>

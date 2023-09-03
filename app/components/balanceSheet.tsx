@@ -21,7 +21,7 @@ export default function SpanningTable({company, balanceSheet, provider}: any) {
     (acc: any, obj: any) => acc + obj.assetsValue,
     0
   );
-  const averageAssetsValue = parseInt(totalAssestsValue / first12Objects.length);
+  const averageAssetsValue = Math.floor(totalAssestsValue / first12Objects.length);
 
   return (
       <div>
